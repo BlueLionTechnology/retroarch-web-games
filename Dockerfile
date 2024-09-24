@@ -38,7 +38,8 @@ RUN apt-get install -y \
     python3 \
     python3-pip \
     lbzip2 \
-    gnupg
+    gnupg \
+    gnupg2
 RUN apt-get install -y \
     apt-transport-https \
     software-properties-common \
@@ -76,7 +77,10 @@ RUN apt-get clean && \
 
 #Install Retroarch from PPA 18DAAE7FECA3745F
 # curl -fsSL https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x18DAAE7FECA3745F | gpg --dearmor -o /etc/apt/trusted.gpg.d/libretro.gpg && \
-RUN add-apt-repository ppa:libretro/stable && \
+# echo "deb http://ppa.launchpad.net/libretro/stable/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/libretro-stable.list && \
+RUN curl -fsSL https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x18DAAE7FECA3745F | gpg --dearmor -o /etc/apt/trusted.gpg.d/libretro.gpg && \
+    echo "deb http://ppa.launchpad.net/libretro/stable/ubuntu focal main" > /etc/apt/sources.list.d/libretro-stable.list && \
+    add-apt-repository ppa:libretro/stable && \
     apt-get update && \
     apt-get install -y retroarch
 
