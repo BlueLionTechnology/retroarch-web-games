@@ -1,5 +1,4 @@
-name: Build start RetroArch Web Games
-
+name: Deploy
 on:
   push:
     branches:
@@ -11,7 +10,7 @@ on:
       - main
 
 jobs:
-  build-and-push:
+  stop-build-and-start:
     runs-on: self-hosted
     steps:
     - name: Checkout repository
