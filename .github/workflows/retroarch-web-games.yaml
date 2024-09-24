@@ -1,4 +1,4 @@
-name: Build and Push RetroArch Web Games
+name: Build start RetroArch Web Games
 
 on:
   push:
@@ -8,22 +8,15 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      
-    - name: Setup QEMU and Docker Buildx
-      uses: docker/setup-qemu-action@v3
 
-    - name: Setup Docker Buildx
-      uses: docker/setup-buildx-action@v3
+    # Build the Docker image
+    - name: Build the Docker image
+      run: docker build -t retroarch-web-games .
 
-    - name: Login to Docker Hub
-      env:
-        DOCKER_USER: ${{ secrets.DOCKER_USER }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
-
-    - name: Build and Push Docker Image
-      run: docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t antoinebou12/retroarch-web-games --push .
+    # start the Docker container the container port 8080 is mapped to the host port 80
+    - name: Start the Docker container
+      run: docker run -d -p 80:8080 retroarch-web-games
