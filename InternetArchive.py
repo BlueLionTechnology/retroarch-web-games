@@ -89,6 +89,7 @@ def download(output_dir: str = "./downloads"):
         "https://archive.org/download/nointro.snes",
         "https://archive.org/download/nointro.md",
         "https://archive.org/download/nointro.nes-headered",
+        "https://archive.org/download/nointro.n64"
     ]
 
     core_folder_mapping_7z = {
