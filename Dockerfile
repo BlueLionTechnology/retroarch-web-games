@@ -52,13 +52,12 @@ RUN apt-get install -y \
     xorg \
     tightvncserver
 RUN apt-get install -y \
-    libegl1-mesa \
+#    libegl1-mesa \
     x11-xkb-utils \
     bzip2 \
     gstreamer1.0-plugins-good \
     gstreamer1.0-pulseaudio \
-    gstreamer1.0-tools \
-    --no-install-recommends
+    gstreamer1.0-tools
 RUN apt-get install -y \
     libglu1-mesa \
     libgtk2.0-0 \
@@ -72,10 +71,22 @@ RUN apt-get install -y \
     supervisor \
     ucspi-tcp \
     build-essential \
-    ccache \
-    --no-install-recommends
+    ccache
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+# Download the necessary .deb packages from the specified URLs
+RUN wget https://launchpad.net/ubuntu/+archive/primary/+files/libegl1-mesa_23.0.4-0ubuntu1~22.04.1_amd64.deb -O /tmp/libegl1-mesa.deb && \
+    wget https://launchpad.net/ubuntu/+archive/primary/+files/libgl1-mesa-glx_23.0.4-0ubuntu1~22.04.1_amd64.deb -O /tmp/libgl1-mesa-glx.deb
+
+# Install the downloaded packages
+RUN dpkg -i /tmp/libegl1-mesa.deb /tmp/libgl1-mesa-glx.deb || true
+
+# Install any missing dependencies
+RUN apt-get update && apt-get install -y -f && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Clean up downloaded .deb files
+RUN rm -f /tmp/libegl1-mesa.deb /tmp/libgl1-mesa-glx.deb
 
 #Copy the files for audio and NGINX
 COPY default.pa client.conf /etc/pulse/
