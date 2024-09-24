@@ -180,8 +180,8 @@ RUN bash /tmp/sort_mkdir.sh "/roms/Nintendo - Nintendo Entertainment System"
 RUN bash /tmp/sort_mkdir.sh "/roms/Nintendo - Super Nintendo Entertainment System"
 
 RUN apt-get install -y \
-    dbus \
-    dbus-x11
+    dbus 
+#    dbus-x11
 
 COPY entrypoint.sh /
 
