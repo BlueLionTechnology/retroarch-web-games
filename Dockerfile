@@ -81,9 +81,12 @@ COPY default.pa client.conf /etc/pulse/
 COPY nginx.conf /etc/nginx/
 COPY webaudio.js /usr/share/novnc/core/
 
-#Install Retroarch
-RUN snap install snapd && \
-    snap install retroarch
+# Install RetroArch from Debian repositories
+RUN apt-get update && \
+    apt-get install -y retroarch libretro-* && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 
 #Inject code for audio in the NoVNC client
 RUN sed -i "/import RFB/a \
