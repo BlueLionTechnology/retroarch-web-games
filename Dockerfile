@@ -4,7 +4,7 @@
 #
 
 # Stage 1: Builder
-FROM debian:bullseye AS builder
+FROM debian:bookworm AS builder
 
 #User Settings for VNC
 ENV USER=root
@@ -56,7 +56,8 @@ RUN apt-get install -y \
     bzip2 \
     gstreamer1.0-plugins-good \
     gstreamer1.0-pulseaudio \
-    gstreamer1.0-tools
+    gstreamer1.0-tools \
+    snapd
 RUN apt-get install -y \
     libglu1-mesa \
     libgtk2.0-0 \
@@ -80,18 +81,9 @@ COPY default.pa client.conf /etc/pulse/
 COPY nginx.conf /etc/nginx/
 COPY webaudio.js /usr/share/novnc/core/
 
-#Install Retroarch from PPA 18DAAE7FECA3745F
-# curl -fsSL https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x18DAAE7FECA3745F | gpg --dearmor -o /etc/apt/trusted.gpg.d/libretro.gpg && \
-# echo "deb http://ppa.launchpad.net/libretro/stable/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/libretro-stable.list && \
-RUN curl -fsSL https://launchpad.net/~libretro/+archive/ubuntu/stable/+files/libretro-archive-keyring.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/libretro.gpg
-RUN echo "deb http://ppa.launchpad.net/libretro/stable/ubuntu focal main" > /etc/apt/sources.list.d/libretro-stable.list
-
-#RUN add-apt-repository ppa:libretro/stable && \
-#    apt-get update && \
-#    apt-get install -y retroarch
-    
-RUN apt-get update && \
-    apt-get install -y retroarch
+#Install Retroarch
+RUN snap install snapd && /
+    snap install retroarch
 
 #Inject code for audio in the NoVNC client
 RUN sed -i "/import RFB/a \
