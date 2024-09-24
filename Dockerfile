@@ -185,17 +185,16 @@ RUN apt-get install -y \
 RUN mkdir -p /run/dbus
 RUN chmod 755 /run/dbus
 
+# Create the .Xauthority file, set permissions, and generate an entry for display :1
+RUN touch /root/.Xauthority && \
+    chmod 600 /root/.Xauthority
+#    xauth generate :0 . trusted
 
 # Start a dummy X server during the build to set up xauth on display :0
 RUN Xvfb :0 -screen 0 1024x768x16 & \
     export DISPLAY=:0 && \
     xauth generate :0 . trusted && \
     pkill Xvfb
-
-# Create the .Xauthority file, set permissions, and generate an entry for display :1
-# RUN touch /root/.Xauthority && \
-#    chmod 600 /root/.Xauthority && \
-#    xauth generate :0 . trusted
 
 COPY entrypoint.sh /
 
