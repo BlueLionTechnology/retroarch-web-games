@@ -23,6 +23,7 @@ urls=(
   "https://archive.org/download/nointro.snes"
   "https://archive.org/download/nointro.md"
   "https://archive.org/download/nointro.nes-headered"
+  "https://archive.org/download/nointro.n64"
 )
 
 parallel -j 6 download_7z_files ::: "${urls[@]}"
@@ -46,6 +47,8 @@ urls=(
   "https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Game%20Boy%20%28Private%29/"
   "https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Game%20Boy%20Advance/"
   "https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Game%20Boy%20Color/"
+  "https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Game%20Boy%20Color/"
+  "https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/"
 )
 
 parallel -j 4 download_zip_files ::: "${urls[@]}"
