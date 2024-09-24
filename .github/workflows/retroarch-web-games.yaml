@@ -13,10 +13,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Stop and remove previous container
+      run: |
+        docker ps -q --filter "ancestor=retroarch-web-games" | xargs -r docker stop
+        docker ps -a -q --filter "ancestor=retroarch-web-games" | xargs -r docker rm
+
     # Build the Docker image
     - name: Build the Docker image
       run: docker build -t retroarch-web-games .
 
-    # start the Docker container the container port 8080 is mapped to the host port 80
+    # Start the Docker container
     - name: Start the Docker container
       run: docker run -d -p 80:80 retroarch-web-games
