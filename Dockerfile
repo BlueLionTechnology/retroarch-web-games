@@ -4,7 +4,7 @@
 #
 
 # Stage 1: Builder
-FROM debian:bookworm AS builder
+FROM ubuntu:latest AS builder
 
 #User Settings for VNC
 ENV USER=root
@@ -83,6 +83,7 @@ COPY webaudio.js /usr/share/novnc/core/
 
 # Install RetroArch from Debian repositories
 RUN apt-get update && \
+    add-apt-repository ppa:libretro/stable && \
     apt-get install -y retroarch libretro-* && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -132,6 +133,7 @@ WORKDIR /var/www/html
 # RUN bash /tmp/setup_retroarch.sh ${ROOT_WWW_PATH}
 
 # Install Python dependencies for InternetArchive script
+RUN pip3 install --upgrade pip
 RUN pip3 install requests typer rich
 COPY InternetArchive.py /tmp/InternetArchive.py
 
