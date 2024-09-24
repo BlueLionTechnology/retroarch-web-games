@@ -14,6 +14,8 @@ ENV PASSWORD=password1
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true
 ENV XKB_DEFAULT_RULES=base
+# Set the DISPLAY variable for X11
+ENV DISPLAY=:0
     
 
 #Install dependencies
@@ -178,7 +180,8 @@ RUN bash /tmp/sort_mkdir.sh "/roms/Nintendo - Nintendo Entertainment System"
 RUN bash /tmp/sort_mkdir.sh "/roms/Nintendo - Super Nintendo Entertainment System"
 
 RUN apt-get install -y \
-    dbus
+    dbus \
+    dbus-x11
 
 COPY entrypoint.sh /
 
