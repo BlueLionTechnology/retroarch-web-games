@@ -23,8 +23,8 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get update && \
     echo "tzdata tzdata/Areas select America" > ~/tx.txt && \
     echo "tzdata tzdata/Zones/America select New York" >> ~/tx.txt && \
-    debconf-set-selections ~/tx.txt && \
-    apt-get install -y \
+    debconf-set-selections ~/tx.txt
+RUN apt-get install -y \
     ca-certificates \
     unzip \
     sed \
@@ -41,7 +41,8 @@ RUN apt-get update && \
     python3 \
     python3-pip \
     lbzip2 \
-    gnupg \
+    gnupg
+RUN apt-get install -y \
     apt-transport-https \
     software-properties-common \
     ratpoison \
@@ -57,7 +58,8 @@ RUN apt-get update && \
     bzip2 \
     gstreamer1.0-plugins-good \
     gstreamer1.0-pulseaudio \
-    gstreamer1.0-tools \
+    gstreamer1.0-tools
+RUN apt-get install -y \
     libglu1-mesa \
     libgtk2.0-0 \
     libncursesw5 \
@@ -71,8 +73,8 @@ RUN apt-get update && \
     ucspi-tcp \
     build-essential \
     ccache \
-    --no-install-recommends && \
-    apt-get clean && \
+    --no-install-recommends
+RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 #Install Retroarch from PPA		
