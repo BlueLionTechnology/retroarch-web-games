@@ -74,10 +74,12 @@ RUN apt-get install -y \
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-#Install Retroarch from PPA		
-RUN add-apt-repository ppa:libretro/stable && \
-	apt-get update && \
-	apt-get install -y retroarch
+#Install Retroarch from PPA 18DAAE7FECA3745F
+RUN curl -fsSL https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x18DAAE7FECA3745F | gpg --dearmor -o /etc/apt/trusted.gpg.d/libretro.gpg && \
+    add-apt-repository ppa:libretro/stable && \
+    apt-get update && \
+    apt-get install -y retroarch
+
 
 #Copy the files for audio and NGINX
 COPY default.pa client.conf /etc/pulse/
