@@ -50,14 +50,15 @@ RUN apt-get install -y \
     xauth \
     x11-utils \
     xorg \
-    tightvncserver \
+    tightvncserver
+RUN apt-get install -y \
     libegl1-mesa \
     x11-xkb-utils \
     bzip2 \
     gstreamer1.0-plugins-good \
     gstreamer1.0-pulseaudio \
     gstreamer1.0-tools \
-    snapd
+    --no-install-recommends
 RUN apt-get install -y \
     libglu1-mesa \
     libgtk2.0-0 \
