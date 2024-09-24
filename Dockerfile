@@ -183,6 +183,7 @@ RUN apt-get install -y \
     dbus 
 #    dbus-x11
 RUN mkdir -p /run/dbus
+RUN chmod 755 /run/dbus
 
 
 COPY entrypoint.sh /
