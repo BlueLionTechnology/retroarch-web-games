@@ -182,6 +182,8 @@ RUN bash /tmp/sort_mkdir.sh "/roms/Nintendo - Super Nintendo Entertainment Syste
 RUN apt-get install -y \
     dbus 
 #    dbus-x11
+RUN mkdir -p /run/dbus
+
 
 COPY entrypoint.sh /
 
