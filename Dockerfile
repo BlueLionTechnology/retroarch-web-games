@@ -38,7 +38,7 @@ RUN apt-get install -y \
     python3 \
     python3-full \
     python3-pip \
-    python3-venv \  # Install venv package
+    python3-venv \
     lbzip2 \
     gnupg \
     gnupg2
