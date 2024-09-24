@@ -38,6 +38,7 @@ RUN apt-get install -y \
     python3 \
     python3-full \
     python3-pip \
+    python3-venv \  # Install venv package
     lbzip2 \
     gnupg \
     gnupg2
@@ -146,14 +147,17 @@ WORKDIR /var/www/html
 # RUN chmod +x /tmp/setup_retroarch.sh
 # RUN bash /tmp/setup_retroarch.sh ${ROOT_WWW_PATH}
 
+# Create a virtual environment and upgrade pip within it
+RUN python3 -m venv /venv && \
+    /venv/bin/pip install --upgrade pip
+
 # Install Python dependencies for InternetArchive script
-RUN pip3 install --upgrade pip --break-system-packages
-RUN pip3 install requests typer rich
+RUN /venv/bin/pip install requests typer rich
 COPY InternetArchive.py /tmp/InternetArchive.py
 
 # Run the InternetArchive script
 RUN chmod +x /tmp/InternetArchive.py
-RUN python3 /tmp/InternetArchive.py
+RUN /venv/bin/python /tmp/InternetArchive.py
 
 COPY sort_mkdir.sh /tmp/sort_mkdir.sh
 
