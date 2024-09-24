@@ -147,7 +147,7 @@ WORKDIR /var/www/html
 # RUN bash /tmp/setup_retroarch.sh ${ROOT_WWW_PATH}
 
 # Install Python dependencies for InternetArchive script
-RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade pip --break-system-packages
 RUN pip3 install requests typer rich
 COPY InternetArchive.py /tmp/InternetArchive.py
 
