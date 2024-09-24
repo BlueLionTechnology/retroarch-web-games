@@ -82,7 +82,7 @@ COPY nginx.conf /etc/nginx/
 COPY webaudio.js /usr/share/novnc/core/
 
 #Install Retroarch
-RUN snap install snapd && /
+RUN snap install snapd && \
     snap install retroarch
 
 #Inject code for audio in the NoVNC client
