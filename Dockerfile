@@ -126,9 +126,9 @@ COPY retroarch.cfg /root/.config/retroarch/retroarch.cfg
 # Download and install RetroArch Web Player
 ENV ROOT_WWW_PATH /var/www/html
 WORKDIR /var/www/html
-COPY setup_retroarch.sh /tmp/setup_retroarch.sh
-RUN chmod +x /tmp/setup_retroarch.sh
-RUN bash /tmp/setup_retroarch.sh ${ROOT_WWW_PATH}
+# COPY setup_retroarch.sh /tmp/setup_retroarch.sh
+# RUN chmod +x /tmp/setup_retroarch.sh
+# RUN bash /tmp/setup_retroarch.sh ${ROOT_WWW_PATH}
 
 # Install Python dependencies for InternetArchive script
 RUN pip3 install requests typer rich
