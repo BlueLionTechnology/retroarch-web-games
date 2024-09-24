@@ -48,15 +48,12 @@ RUN apt-get update && \
     novnc \
     websockify \
     libxv1 \
-    libglu1-mesa \
     xauth \
     x11-utils \
     xorg \
     tightvncserver \
     libegl1-mesa \
-    xauth \
     x11-xkb-utils \
-    software-properties-common \
     bzip2 \
     gstreamer1.0-plugins-good \
     gstreamer1.0-pulseaudio \
@@ -74,8 +71,9 @@ RUN apt-get update && \
     ucspi-tcp \
     build-essential \
     ccache \
-    --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
+    --no-install-recommends && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 #Install Retroarch from PPA		
 RUN add-apt-repository ppa:libretro/stable && \
