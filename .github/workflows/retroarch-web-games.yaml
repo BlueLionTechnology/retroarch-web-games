@@ -19,4 +19,4 @@ jobs:
 
     # start the Docker container the container port 8080 is mapped to the host port 80
     - name: Start the Docker container
-      run: docker run -d -p 80:8080 retroarch-web-games
+      run: docker run -d -p 80:80 retroarch-web-games
