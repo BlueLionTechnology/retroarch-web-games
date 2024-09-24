@@ -98,6 +98,7 @@ def download(output_dir: str = "./downloads"):
         urls_7z[3]: "Nintendo - Super Nintendo Entertainment System",
         urls_7z[4]: "Sega - Mega Drive - Genesis",
         urls_7z[5]: "Nintendo - Nintendo Entertainment System",
+        urls_7z[6]: "Nintendo - Nintendo 64",
     }
 
     urls_zip = [
