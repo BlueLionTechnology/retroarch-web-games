@@ -36,6 +36,7 @@ RUN apt-get install -y \
     parallel \
     git \
     python3 \
+    python3-full \
     python3-pip \
     lbzip2 \
     gnupg \
