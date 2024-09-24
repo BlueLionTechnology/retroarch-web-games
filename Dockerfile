@@ -14,9 +14,6 @@ ENV PASSWORD=password1
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true
 ENV XKB_DEFAULT_RULES=base
-
-# Install required packages
-RUN apt-get update && apt-get install -y \
     
 
 #Install dependencies
