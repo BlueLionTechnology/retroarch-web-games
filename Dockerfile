@@ -83,7 +83,7 @@ COPY webaudio.js /usr/share/novnc/core/
 #Install Retroarch from PPA 18DAAE7FECA3745F
 # curl -fsSL https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x18DAAE7FECA3745F | gpg --dearmor -o /etc/apt/trusted.gpg.d/libretro.gpg && \
 # echo "deb http://ppa.launchpad.net/libretro/stable/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/libretro-stable.list && \
-RUN curl -fsSL https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x18DAAE7FECA3745F | gpg --dearmor -o /etc/apt/trusted.gpg.d/libretro.gpg
+RUN curl -fsSL https://launchpad.net/~libretro/+archive/ubuntu/stable/+files/libretro-archive-keyring.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/libretro.gpg
 RUN echo "deb http://ppa.launchpad.net/libretro/stable/ubuntu focal main" > /etc/apt/sources.list.d/libretro-stable.list
 
 #RUN add-apt-repository ppa:libretro/stable && \
