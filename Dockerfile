@@ -161,6 +161,14 @@ RUN /venv/bin/python /tmp/InternetArchive.py
 
 COPY sort_mkdir.sh /tmp/sort_mkdir.sh
 
+#MKDir for ROMS
+RUN mkdir -p "/roms/Nintendo - GameBoy" \
+    "/roms/Nintendo - GameBoy Advance" \
+    "/roms/Nintendo - GameBoy Color" \
+    "/roms/Nintendo - Nintendo 64" \
+    "/roms/Nintendo - Nintendo Entertainment System" \
+    "/roms/Nintendo - Super Nintendo Entertainment System"
+
 # Sort
 RUN bash /tmp/sort_mkdir.sh "/roms/Nintendo - GameBoy"
 RUN bash /tmp/sort_mkdir.sh "/roms/Nintendo - GameBoy Advance"
