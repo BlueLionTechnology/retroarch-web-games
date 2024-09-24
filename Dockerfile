@@ -75,19 +75,23 @@ RUN apt-get install -y \
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-#Install Retroarch from PPA 18DAAE7FECA3745F
-# curl -fsSL https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x18DAAE7FECA3745F | gpg --dearmor -o /etc/apt/trusted.gpg.d/libretro.gpg && \
-# echo "deb http://ppa.launchpad.net/libretro/stable/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/libretro-stable.list && \
-RUN curl -fsSL https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x18DAAE7FECA3745F | gpg --dearmor -o /etc/apt/trusted.gpg.d/libretro.gpg && \
-    echo "deb http://ppa.launchpad.net/libretro/stable/ubuntu focal main" > /etc/apt/sources.list.d/libretro-stable.list && \
-    add-apt-repository ppa:libretro/stable && \
-    apt-get update && \
-    apt-get install -y retroarch
-
 #Copy the files for audio and NGINX
 COPY default.pa client.conf /etc/pulse/
 COPY nginx.conf /etc/nginx/
 COPY webaudio.js /usr/share/novnc/core/
+
+#Install Retroarch from PPA 18DAAE7FECA3745F
+# curl -fsSL https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x18DAAE7FECA3745F | gpg --dearmor -o /etc/apt/trusted.gpg.d/libretro.gpg && \
+# echo "deb http://ppa.launchpad.net/libretro/stable/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/libretro-stable.list && \
+RUN curl -fsSL https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x18DAAE7FECA3745F | gpg --dearmor -o /etc/apt/trusted.gpg.d/libretro.gpg
+RUN echo "deb http://ppa.launchpad.net/libretro/stable/ubuntu focal main" > /etc/apt/sources.list.d/libretro-stable.list
+
+#RUN add-apt-repository ppa:libretro/stable && \
+#    apt-get update && \
+#    apt-get install -y retroarch
+    
+RUN apt-get update && \
+    apt-get install -y retroarch
 
 #Inject code for audio in the NoVNC client
 RUN sed -i "/import RFB/a \
