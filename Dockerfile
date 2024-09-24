@@ -51,6 +51,7 @@ RUN apt-get install -y \
     novnc \
     websockify \
     libxv1 \
+    xvfb \
     xauth \
     x11-utils \
     xorg \
