@@ -177,6 +177,9 @@ RUN bash /tmp/sort_mkdir.sh "/roms/Nintendo - Nintendo 64"
 RUN bash /tmp/sort_mkdir.sh "/roms/Nintendo - Nintendo Entertainment System"
 RUN bash /tmp/sort_mkdir.sh "/roms/Nintendo - Super Nintendo Entertainment System"
 
+RUN apt-get install -y \
+    dbus
+
 COPY entrypoint.sh /
 
 EXPOSE 80
