@@ -196,7 +196,11 @@ RUN Xvfb :0 -screen 0 1024x768x16 & \
     export DISPLAY=:0 && \
     sleep 5 && \
     xauth generate :0 . trusted && \
-    pkill Xvfb
+    pkill Xvfb && \
+    rm -f /tmp/.X0-lock && \
+    rm -f /tmp/.X11-unix/X0
+
+    
 
 COPY entrypoint.sh /
 
