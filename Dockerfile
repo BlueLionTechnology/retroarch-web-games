@@ -194,6 +194,7 @@ RUN touch /root/.Xauthority && \
 # Start a dummy X server during the build to set up xauth on display :0
 RUN Xvfb :0 -screen 0 1024x768x16 & \
     export DISPLAY=:0 && \
+    sleep 5 && \
     xauth generate :0 . trusted && \
     pkill Xvfb
 
