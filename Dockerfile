@@ -204,6 +204,12 @@ RUN Xvfb :0 -screen 0 1024x768x16 & \
 
 COPY entrypoint.sh /
 
+# VNC port
+EXPOSE 5999
+# HTTP port
+EXPOSE 8080
+# EventServer port
+EXPOSE 9777/udp
 EXPOSE 80
 #CMD ["sh", "/entrypoint.sh"]
 
