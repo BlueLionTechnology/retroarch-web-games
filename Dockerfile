@@ -14,6 +14,7 @@ ENV PASSWORD=password1
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true
 ENV XKB_DEFAULT_RULES=base
+# ENV DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 # Set the DISPLAY variable for X11
 ENV DISPLAY=:0
     
