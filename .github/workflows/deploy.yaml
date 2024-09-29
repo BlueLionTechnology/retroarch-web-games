@@ -27,4 +27,4 @@ jobs:
 
     # Start the Docker container
     - name: Start the Docker container
-      run: docker run -d -p 80:80 retroarch-web-games
+      run: docker run -d -p 80:80 -p 8080:8080 -p 5999:5999 -p 9777:9777 retroarch-web-games
